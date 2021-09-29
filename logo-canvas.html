@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>logo - canvas </title>
+</head>
+
+<body>
+<canvas id="tutorial" width="40" height="40"></canvas>
+</body>
+<script>
+    function draw(){
+
+        var r = 20 ;
+        var x = 10* Math.sqrt(2);
+
+        var canvas = document.getElementById('tutorial');
+        canvas.style.border = '1px dashed red';
+        if (!canvas.getContext) return;
+        var ctx = canvas.getContext("2d");
+
+        ctx.strokeStyle  = "#00f0ff";
+        ctx.beginPath(); //新建一条path
+        ctx.moveTo(r-x, r-x); //把画笔移动到指定的坐标
+        ctx.lineTo(r+x, r-x);  //绘制一条从当前位置到指定坐标(200, 50)的直线.
+        ctx.lineTo(r-x, r+x);
+        ctx.lineTo(r+x, r+x);
+        //闭合路径。会拉一条从当前点到path起始点的直线。如果当前点与起始点重合，则什么都不做
+        // ctx.closePath();
+        ctx.stroke(); //绘制路径。
+
+        ctx.strokeStyle  = "#2ef14f";
+        ctx.beginPath(); //新建一条path
+        ctx.lineTo(r-x, r-x);
+        ctx.lineTo(r+x, r+x);
+        ctx.stroke(); //绘制路径。
+
+        ctx.beginPath(); //新建一条path
+        ctx.lineTo(r-x,r);
+        ctx.lineTo(r,r-x);
+        ctx.stroke(); //绘制路径。
+
+        ctx.beginPath(); //新建一条path
+        ctx.lineTo(r,r+x);
+        ctx.lineTo(r+x,r);
+        ctx.stroke(); //绘制路径。
+
+
+        ctx.globalCompositeOperation = "destination-atop"; //全局合成操作
+        ctx.beginPath(); //新建一条path
+        ctx.fillStyle = "#bef7a8";
+        ctx.arc(r,r,r,0, 2*Math.PI , false);
+
+        ctx.fill();
+
+    }
+    draw();
+</script>
+</html>
